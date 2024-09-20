@@ -1,0 +1,30 @@
+{% extends 'financeiro/base.html' %}
+
+{% block content %}
+  <h2>Gastos do Grupo: {{ grupo.nome }}</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <button type="submit">Filtrar</button>
+  </form>
+
+  <h3>Resultados:</h3>
+  
+  {% if gastos %}
+    <ul>
+      {% for gasto in gastos %}
+        <li>
+          {{ gasto.descricao }} - {{ gasto.valor }} - {{ gasto.data }}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <h4>Total de Gastos no Período: R$ {{ total_gastos }}</h4>
+  {% else %}
+    <p>Nenhum gasto encontrado para o período selecionado.</p>
+  {% endif %}
+  
+  <p><a href="{% url 'detalhes_grupo' grupo.id %}">Voltar para os detalhes do grupo</a></p>
+{% endblock %}

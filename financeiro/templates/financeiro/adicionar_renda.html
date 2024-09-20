@@ -1,0 +1,15 @@
+{% extends 'financeiro/base.html' %}
+
+
+{% block content %}
+  <h2>Adicionar Renda ao Grupo: {{ grupo.nome }}</h2>
+  
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <button type="submit">Adicionar Renda</button>
+  </form>
+  
+  <p><a href="{% url 'detalhes_grupo' grupo.id %}">Voltar para os detalhes do grupo</a></p>
+{% endblock %}

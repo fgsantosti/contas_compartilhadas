@@ -1,0 +1,24 @@
+{% extends 'financeiro/base.html' %}
+
+
+{% block content %}
+  <h2>Detalhes do Grupo: {{ grupo.nome }}</h2>
+  <p>Criado por: {{ grupo.criador }}</p>
+
+  <h3>Rendas</h3>
+  <ul>
+    {% for renda in rendas %}
+      <li>{{ renda.usuario }}: R$ {{ renda.valor }} - {{ renda.descricao }}</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Gastos</h3>
+  <ul>
+    {% for gasto in gastos %}
+      <li>{{ gasto.usuario }}: R$ {{ gasto.valor }} - {{ gasto.descricao }}</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'adicionar_renda' grupo.id %}">Adicionar Renda</a> |
+  <a href="{% url 'adicionar_gasto' grupo.id %}">Adicionar Gasto</a>
+{% endblock %}
